@@ -10,3 +10,13 @@
 
 // Include the config file
 include_once('config.php');
+
+echo 'My CMS home page';
+
+echo '<a href="'.DIRADMIN.'login.php">Log in</a>';
+echo '<a href="'.DIRADMIN.'signup.php">Sign up</a>';
+
+?>
+
+
+

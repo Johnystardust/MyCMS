@@ -67,7 +67,7 @@ class User {
     |
     |   @params: $username, $userPassword, $userEmail
     |
-    |   This function...
+    |   This function creates a new admin user.
     |------------------------------------------------------------
     */
     public function create($username, $userPassword, $userEmail){
@@ -84,22 +84,40 @@ class User {
         }
     }
 
+    public function update(){
+
+    }
+
+    public function destroy(){
+
+    }
+
     /*
     |------------------------------------------------------------
     |   Redirect function
     |
     |   @params: $url
     |
-    |   This function redirects the user to the index page after
-    |   login.
+    |   This function redirects the user to a page after.
     |------------------------------------------------------------
     */
     public function redirect($url){
         header('location:'.$url);
     }
 
-    public function update(){
-
+    /*
+    |------------------------------------------------------------
+    |   Is Logged In function
+    |
+    |   This function checks if a user is logged in and returns
+    |   true if it is.
+    |------------------------------------------------------------
+    */
+    public function is_loggedin()
+    {
+        if(isset($_SESSION['user_session']))
+        {
+            return true;
+        }
     }
-
 }

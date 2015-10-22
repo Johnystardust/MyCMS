@@ -47,7 +47,10 @@ catch (PDOException $e){
 define('DIR', 'http://www.timvanderslik.nl/development/mycms/');
 
 // Admin path
-define('DIRADMIN', 'http://www.timvanderslik.nl/development/mycms/admin');
+define('DIRADMIN', 'http://www.timvanderslik.nl/development/mycms/admin/');
+
+// Site name
+define('SITENAME', 'My-CMS');
 
 // Include checker
 define('included', 1);
