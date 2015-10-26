@@ -24,3 +24,6 @@ if(!defined('included')){
 */
 include_once('class/User.php');
 $user = new User($conn);
+
+include_once('class/Page.php');
+$page = new Page($conn);

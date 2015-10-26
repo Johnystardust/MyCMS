@@ -94,12 +94,12 @@ class User {
     |   This function updates the data from a specified id.
     |------------------------------------------------------------
     */
-    public function edit($username, $userPassword, $userEmail){
+    public function edit($username, $userPassword, $userEmail, $id){
         try {
-            $sql = "UPDATE users SET username = :username, password = :userPassword, email = :userEmail";
+            $sql = "UPDATE users SET username = :username, password = :userPassword, email = :userEmail WHERE id = :id";
             $q = $this->db->prepare($sql);
 
-            $q->execute(array(':username' => $username, ':userPassword' => $userPassword, ':userEmail' => $userEmail));
+            $q->execute(array(':username' => $username, ':userPassword' => $userPassword, ':userEmail' => $userEmail, ':id' => $id));
 
             return $q;
         }
