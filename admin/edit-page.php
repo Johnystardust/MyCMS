@@ -74,6 +74,16 @@ include_once('admin-header.php');
 
             <h2>Edit page</h2>
 
+
+            <select class="btn btn-primary" name="page_row">
+                <option disabled selected>Select an element</option>
+                <option value="slider">Slider</option>
+                <option value="textimage">Text with image</option>
+                <option value="text">Text</option>
+                <option value="image">Image</option>
+                <option value="repeater">Repeater</option>
+            </select>
+
             <form action="" method="post">
                 <div class="form-group">
                     <label for="title">Title</label>
