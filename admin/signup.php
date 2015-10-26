@@ -10,37 +10,104 @@
 
 include_once('../config.php');
 
+/*
+|------------------------------------------------------------
+|   If the singup form gets submitted check to see if the
+|   user has filled in their details accordingly.
+|------------------------------------------------------------
+*/
 if(isset($_POST['signup'])){
-    $username = $_POST['username'];
-    $userEmail = $_POST['email'];
-    $userPassword = $_POST['password'];
+    $username        = $_POST['username'];
+    $userEmail       = $_POST['email'];
+    $userPassword    = $_POST['password'];
+    $confirmPassword = $_POST['confirm_password'];
 
-    if($user->create($username, $userPassword, $userEmail)){
-        $user->redirect('login.php?joined');
+    if($username == '') {
+        $error[] = 'Please provide a username.';
+    }
+    if($userEmail == ''){
+        $error[] = 'Please provide a email.';
+    }
+    if(!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
+        $error[] = 'Please enter a valid email address!';
+    }
+    if($userPassword == ''){
+        $error[] = 'Please provide a password.';
+    }
+    if($confirmPassword !== $userPassword){
+        $error[] = 'Passwords dont match.';
+    }
+    if(strlen($userPassword) < 6){
+        $error[] = 'Password must be at least 6 characters.';
+    }
+
+    /*
+    |------------------------------------------------------------
+    |   If the user has send their details correctly, check if
+    |   the users 'username' and 'email' are unique.
+    |   If they are than complete the registration process.
+    |------------------------------------------------------------
+    */
+    try {
+        $sql = "SELECT username,email FROM users WHERE username=:username OR email=:userEmail";
+        $q = $conn->prepare($sql);
+
+        $q->execute(array(':username' => $username, ':userEmail' => $userEmail));
+        $row = $q->fetch(PDO::FETCH_ASSOC);
+
+        if($row['username'] == $username){
+            $error[] = 'Sorry username already taken';
+        }
+        elseif($row['email'] == $userEmail){
+            $error[] = 'Sorry email already taken';
+        }
+        else {
+            if($user->create($username, $userPassword, $userEmail)){
+                $user->redirect('login.php?joined');
+            }
+        }
+
+    }
+    catch(PDOException $e){
+        echo $e->getMessage();
     }
 }
-
 ?>
 
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title><?php echo SITENAME; ?></title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo DIRADMIN; ?>includes/sass/style.css"/>
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,400italic,700,500" rel="stylesheet" type="text/css">
-</head>
-
-<body>
+<?php include_once('admin-header.php'); ?>
 
 <div id="admin-enter-screen" class="container-fluid no-padding">
 
     <div class="row admin-enter-row">
         <div class="admin-enter col-md-4 col-md-offset-4">
             <h2>Sign Up</h2>
+
+            <?php
+            if(is_array($error)){
+                ?>
+                <div class="admin-enter-message">
+                    <div class="message">
+                        <?php
+                        foreach($error as $i){
+                            echo '<span class="label label-danger">'.$i.'</span><br/>';
+                        }
+                        ?>
+                        <br/>
+                    </div>
+                </div>
+                <?php
+            }
+            elseif($error != '') {
+                ?>
+                <div class="admin-enter-message">
+                    <div class="message">
+                        <span class="label label-danger"><?php echo $error; ?></span><br/><br/>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
+
             <form action="" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -50,6 +117,11 @@ if(isset($_POST['signup'])){
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input class="form-control" type="password" name="password"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Confirm Password</label>
+                    <input class="form-control" type="password" name="confirm_password"/>
                 </div>
 
                 <div class="form-group">

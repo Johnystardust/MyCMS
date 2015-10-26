@@ -33,7 +33,8 @@ class User {
 
             if(count($q) > 0){
                 if($userRow['password'] === $userPassword){
-                    $_SESSION['user_session'] = $userRow['id'];
+                    $_SESSION['user_session_id']       = $userRow['id'];
+                    $_SESSION['user_session_name']  = $userRow['username'];
                     return true;
                 }
                 else {
@@ -84,12 +85,71 @@ class User {
         }
     }
 
-    public function update(){
+    /*
+    |------------------------------------------------------------
+    |   Update function
+    |
+    |   @params: $username, $userPassword, $userEmail
+    |
+    |   This function updates the data from a specified id.
+    |------------------------------------------------------------
+    */
+    public function edit($username, $userPassword, $userEmail){
+        try {
+            $sql = "UPDATE users SET username = :username, password = :userPassword, email = :userEmail";
+            $q = $this->db->prepare($sql);
 
+            $q->execute(array(':username' => $username, ':userPassword' => $userPassword, ':userEmail' => $userEmail));
+
+            return $q;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
-    public function destroy(){
+    /*
+    |------------------------------------------------------------
+    |   Destroy function
+    |
+    |   @params: $id
+    |
+    |   This function deletes a user with the specified id.
+    |------------------------------------------------------------
+    */
+    public function destroy($id){
+        try {
+            $sql = "DELETE FROM users WHERE id = :id";
+            $q = $this->db->prepare($sql);
 
+            $q->execute(array(':id' => $id));
+
+            return $q;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
+    /*
+    |------------------------------------------------------------
+    |   List all function
+    |
+    |   This function lists all the users and displays them.
+    |------------------------------------------------------------
+    */
+    function list_all(){
+        try {
+            $sql = "SELECT * FROM users";
+            $q = $this->db->prepare($sql);
+
+            $q->execute();
+
+            return $q;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     /*
@@ -115,7 +175,7 @@ class User {
     */
     public function is_loggedin()
     {
-        if(isset($_SESSION['user_session']))
+        if(isset($_SESSION['user_session_id']))
         {
             return true;
         }

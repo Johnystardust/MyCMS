@@ -10,7 +10,7 @@
 
 /*
 |------------------------------------------------------------
-|   Check if the file is included
+|   Check if the file is included and not directly accessed.
 |------------------------------------------------------------
 */
 if(!defined('included')){

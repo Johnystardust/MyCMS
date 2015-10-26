@@ -48,19 +48,7 @@ if(isset($_GET['logged-out'])){
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title><?php echo SITENAME; ?></title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo DIRADMIN; ?>includes/sass/style.css"/>
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,400italic,700,500" rel="stylesheet" type="text/css">
-</head>
-
-<body>
+<?php include_once('admin-header.php'); ?>
 
     <div id="admin-enter-screen" class="container-fluid no-padding">
 

@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Tim
- * Date: 10/22/2015
- * Time: 10:41 AM
- *
- * The Admin Index File
- */
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 include_once('../config.php');
 
@@ -20,12 +15,44 @@ if(!$user->is_loggedin())
     $user->redirect(DIR.'index.php');
 }
 
-// echo the user id, testing purposes
-$user_id = $_SESSION['user_session'];
-echo $user_id;
-
+/*
+|----------------------------------------------------------------
+|   Include the admin header.
+|----------------------------------------------------------------
+*/
+include_once('admin-header.php');
 ?>
 
-<a href="logout.php?logout=true">logout</a>
 
-<p>Admin index page</p>
+<div class="container-fluid">
+
+    <?php
+    /*
+    |----------------------------------------------------------------
+    |   Include the admin top bar.
+    |----------------------------------------------------------------
+    */
+    include_once('admin-top-bar.php');
+    ?>
+
+    <div class="row">
+        <?php
+        /*
+        |----------------------------------------------------------------
+        |   Include the admin menu.
+        |----------------------------------------------------------------
+        */
+        include_once('admin-menu.php');
+        ?>
+
+        <div class="col-md-10 main">
+
+            <?php
+
+            ?>
+
+        </div>
+
+    </div>
+
+</div>
