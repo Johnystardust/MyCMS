@@ -111,22 +111,22 @@ if(isset($_POST['signup'])){
             <form action="" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input class="form-control" type="text" name="username" />
+                    <input class="form-control" id="username" type="text" name="username" />
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input class="form-control" type="password" name="password"/>
+                    <input class="form-control" id="password" type="password" name="password"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Confirm Password</label>
-                    <input class="form-control" type="password" name="confirm_password"/>
+                    <label for="confirm_password">Confirm Password</label>
+                    <input class="form-control" id="confirm_password" type="password" name="confirm_password"/>
                 </div>
 
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input class="form-control" type="text" name="email"/>
+                    <input class="form-control" id="email" type="text" name="email"/>
                 </div>
 
                 <input class="btn btn-primary" type="submit" name="signup" value="Sign up"/>

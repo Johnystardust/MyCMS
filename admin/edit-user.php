@@ -149,22 +149,22 @@ include_once('admin-header.php');
             <form action="" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input class="form-control" type="text" name="username" value="<?php echo $row['username']; ?>" />
+                    <input class="form-control" id="username" type="text" name="username" value="<?php echo $row['username']; ?>" />
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input class="form-control" type="password" name="password" value="<?php echo $row['password']; ?>"/>
+                    <input class="form-control" id="password" type="password" name="password" value="<?php echo $row['password']; ?>"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Confirm Password</label>
-                    <input class="form-control" type="password" name="confirm_password" value="<?php echo $row['password']; ?>"/>
+                    <label for="confirm_password">Confirm Password</label>
+                    <input class="form-control" id="confirm_password" type="password" name="confirm_password" value="<?php echo $row['password']; ?>"/>
                 </div>
 
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input class="form-control" type="text" name="email" value="<?php echo $row['email']; ?>"/>
+                    <input class="form-control" id="email" type="text" name="email" value="<?php echo $row['email']; ?>"/>
                 </div>
 
                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>"/>
