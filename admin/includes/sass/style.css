@@ -82,16 +82,17 @@ h2 {
   min-height: 600px;
   margin-top: 40px; }
 
-.top, .list-table-top, .form-block-top, .form-side-block-top {
+.top, .block-top, .list-table-top, .form-block-top, .form-side-block-top {
   padding: 15px;
   background: #74CA97;
-  border-radius: 15px 15px 0 0;
   color: #FFFFFF; }
 
-.body, .list-table-body, .form-block-body, .form-side-block-body {
+.body, .block-body, .list-table-body, .form-block-body, .form-side-block-body {
   padding: 15px;
-  background: #FFFFFF;
-  border-radius: 0 0 15px 15px; }
+  background: #FFFFFF; }
+
+.block {
+  margin-top: 25px; }
 
 .list-table {
   margin-top: 25px; }

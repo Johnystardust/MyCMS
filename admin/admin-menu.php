@@ -14,6 +14,7 @@ if(!defined('included')){
     <ul>
         <a href="<?php echo DIRADMIN ?>pages.php"><li><span>Pages</span></li></a>
         <a href="<?php echo DIRADMIN ?>users.php"><li><span>Users</span></li></a>
+        <a href="<?php echo DIRADMIN ?>media.php"><li><span>Media</span></li></a>
     </ul>
 
 

@@ -62,4 +62,3 @@ define('included', 1);
 */
 include_once('admin/includes/functions.php');
 
-
