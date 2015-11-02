@@ -1,6 +1,3 @@
-<span>DIT IS EEN PAGE</span>
-
-
 <?php
 /**
  * Created by PhpStorm.
@@ -25,10 +22,23 @@ $row = $q->fetch(PDO::FETCH_ASSOC);
 
 
 
-echo $row['title'];
-echo $row['time_created'];
+echo $row['title'].'<br/>';
+echo $row['time_created'].'<br/><br/>';
 
-echo 'dit is de ID: '. $_GET['p'];
+$elements = json_decode($row['elements']);
 
-?>
+
+foreach($elements as $element){
+
+    switch($element->type){
+        case 'text':
+            echo '<span>'.$element->title.'</span><br/>';
+            echo '<span>'.$element->content.'</span><br/>';
+            break;
+    }
+
+
+}
+
+var_dump($elements);
 

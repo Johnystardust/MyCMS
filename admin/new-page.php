@@ -93,11 +93,44 @@ include_once('admin-header.php');
                         </div>
                     </div>
 
+
+
+                    <!-- TESTTING PURPOSES -->
+                    <div class="form-block">
+
+                        <div class="form-block-top">
+                            <span>image</span>
+                        </div>
+
+                        <div class="form-block-body">
+
+                            <input type="hidden" name="elements[][type]" value="image"/>
+
+                            <div class="form-group">
+                                <label for="image">Image</label>
+                                <input type="hidden" name="elements[][image]" value=""/>
+
+                                <a class="btn btn-green" href="#" onclick="chooseImage()">Select Image</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
                 <div class="form-side col-md-4">
                     <div class="form-side-block">
-                        <input class="btn btn-green" type="submit" name="submit" value="Submit"/>
+                        <div class="form-side-block-top">
+                            <span>Details</span>
+                        </div>
+
+                        <div class="form-side-block-body">
+                            <span><strong>Date created: </strong></span><br/>
+                            <span><strong>Date updated: </strong></span><br/>
+                            <span><strong>Author: </strong><?php echo $_SESSION['user_session_name']; ?></span><br/><br/>
+                            <input class="btn btn-green" type="submit" name="submit" value="Submit"/>
+                        </div>
                     </div>
                 </div>
 

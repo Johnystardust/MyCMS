@@ -110,7 +110,7 @@ include_once('admin-header.php');
                     </div>
                     
                     <?php
-                    if(is_array($row['elements'])){
+                    if(!empty($row['elements'])){
 
                         $number     = 1;
                         $elements   = json_decode($row['elements']);
@@ -159,8 +159,9 @@ include_once('admin-header.php');
                         <div class="form-side-block-body">
                             <span><strong>Date created: </strong><?php echo $row['time_created']; ?></span><br/>
                             <span><strong>Date updated: </strong><?php echo $row['time_updated']; ?></span><br/>
-                            <span><strong>Author: </strong><?php echo $row['author']; ?></span><br/><br/>
-                            <input class="btn btn-green" type="submit" name="edit" value="Edit"/>
+                            <span><strong>Author: </strong><?php echo $row['author'] ?></span><br/><br/>
+                            <input class="btn btn-green" type="submit" name="edit" value="Edit"/><br/>
+                            <a href="<?php echo DIR.'page.php?p='.$row['id']; ?>" target="_blank">go to page</a>
                         </div>
 
                     </div>

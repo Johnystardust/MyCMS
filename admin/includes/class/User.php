@@ -33,7 +33,7 @@ class User {
 
             if(count($q) > 0){
                 if($userRow['password'] === $userPassword){
-                    $_SESSION['user_session_id']       = $userRow['id'];
+                    $_SESSION['user_session_id']    = $userRow['id'];
                     $_SESSION['user_session_name']  = $userRow['username'];
                     return true;
                 }
