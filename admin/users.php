@@ -79,7 +79,7 @@ include_once('admin-header.php');
         include_once('admin-menu.php');
         ?>
 
-        <div class="col-md-10 main">
+        <div class="col-md-10 col-md-offset-2 main">
 
             <?php
             if($message !== ''){
@@ -93,32 +93,44 @@ include_once('admin-header.php');
 
             <h2>All the users</h2>
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $q = $user->list_all();
-                    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+            <div class="list-table">
 
-                    foreach($rows as $row){
-                        echo '<tr>';
-                        echo '<td>'.$row["username"].'</td>';
-                        echo '<td>'.$row["email"].'</td>';
-                        echo '<td>'.$row["password"].'</td>';
-                        echo '<td><a class="btn btn-primary" href="'.DIRADMIN.'edit-user.php?id='.$row["id"].'">Edit</a>&nbsp
-                        <a class="btn btn-primary" href="'.DIRADMIN.'users.php?delete=true&id='.$row["id"].'">Delete</a></td>';
-                        echo '</tr>';
-                    }
-                    ?>
-                </tbody>
-            </table>
+                <div class="list-table-top">
+                    <span>Users</span>
+                </div>
+
+                <div class="list-table-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $q = $user->list_all();
+                        $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach($rows as $row){
+                            echo '<tr>';
+                            echo '<td><input type="checkbox"/></td>';
+                            echo '<td>'.$row["username"].'</td>';
+                            echo '<td>'.$row["email"].'</td>';
+                            echo '<td>'.$row["password"].'</td>';
+                            echo '<td><a class="btn btn-green" href="'.DIRADMIN.'edit-user.php?id='.$row["id"].'">Edit</a>&nbsp
+                        <a class="btn btn-green" href="'.DIRADMIN.'users.php?delete=true&id='.$row["id"].'">Delete</a></td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
 
         </div>
 

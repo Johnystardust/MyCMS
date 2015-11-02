@@ -22,11 +22,12 @@ if(!$user->is_loggedin()){
 |----------------------------------------------------------------
 */
 if(isset($_POST['submit'])){
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $author = $_SESSION['user_session_name'];
+    $title      = $_POST['title'];
+    $elements   = json_encode($_POST['elements']);
+    $author     = $_SESSION['user_session_name'];
+    $date       = date("Y-m-d H:i:s");
 
-    if($page->create($title, $content, $author)) {
+    if($page->create($title, $elements, $author, $date)) {
         $user->redirect('pages.php?created');
     }
 }
@@ -61,22 +62,45 @@ include_once('admin-header.php');
         include_once('admin-menu.php');
         ?>
 
-        <div class="col-md-10 main">
+        <div class="col-md-10 col-md-offset-2 main">
 
             <h2>New page</h2>
 
-            <form action="" method="post">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input class="form-control" type="text" name="title"/>
+
+            <select class="btn btn-green" name="page_row" onchange="addElement(this.value)">
+                <option value="default" disabled selected>Select an element</option>
+                <option value="slider">Slider</option>
+                <option value="textimage">Text with image</option>
+                <option value="text">Text</option>
+                <option value="image">Image</option>
+                <option value="repeater">Repeater</option>
+            </select>
+
+            <form action="" method="post" id="page-form">
+
+                <div class="form-body col-md-8">
+
+                    <div class="form-block">
+                        <div class="form-block-top">
+                            <span>Page Title</span>
+                        </div>
+
+                        <div class="form-block-body">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input class="form-control" id="title" type="text" name="title"/>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="content">Content</label>
-                    <textarea class="form-control" name="content" cols="30" rows="10"></textarea>
+                <div class="form-side col-md-4">
+                    <div class="form-side-block">
+                        <input class="btn btn-green" type="submit" name="submit" value="Submit"/>
+                    </div>
                 </div>
 
-                <input class="btn btn-primary" type="submit" name="submit" value="Submit"/>
             </form>
 
         </div>

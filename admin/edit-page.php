@@ -1,7 +1,7 @@
 <?php
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 include_once('../config.php');
 
@@ -18,10 +18,17 @@ if(!$user->is_loggedin()){
 
 if(isset($_POST['edit'])){
     $title      = $_POST['title'];
-    $content    = $_POST['content'];
+    if(isset($_POST['elements'])){
+        $elements   = json_encode($_POST['elements']);
+    }
+    else {
+        $elements = NULL;
+    }
     $id         = $_POST['id'];
+    $date       = date("Y-m-d H:i:s");
 
-    if($page->edit($title, $content, $id)){
+
+    if($page->edit($title, $elements, $id, $date)){
         $user->redirect('pages.php?edited');
     }
 }
@@ -33,10 +40,8 @@ if(isset($_POST['edit'])){
 */
 $id = $_GET['id'];
 
-$sql = "SELECT * FROM pages WHERE id = :id";
-$q = $conn->prepare($sql);
+$q = $page->list_single($id);
 
-$q->execute(array(':id' => $id));
 $row = $q->fetch(PDO::FETCH_ASSOC);
 
 
@@ -70,13 +75,13 @@ include_once('admin-header.php');
         include_once('admin-menu.php');
         ?>
 
-        <div class="col-md-10 main">
+        <div class="col-md-10 col-md-offset-2 main">
 
             <h2>Edit page</h2>
 
 
-            <select class="btn btn-primary" name="page_row">
-                <option disabled selected>Select an element</option>
+            <select class="btn btn-green" name="page_row" onchange="addElement(this.value)">
+                <option value="default" disabled selected>Select an element</option>
                 <option value="slider">Slider</option>
                 <option value="textimage">Text with image</option>
                 <option value="text">Text</option>
@@ -84,18 +89,83 @@ include_once('admin-header.php');
                 <option value="repeater">Repeater</option>
             </select>
 
-            <form action="" method="post">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input class="form-control" type="text" name="title" value="<?php echo $row['title'] ?>"/>
+            <form action="" method="post" id="page-form">
+
+                <div class="form-body col-md-8">
+
+                    <div class="form-block">
+                        <div class="form-block-top">
+                            <span>Page Title</span>
+                        </div>
+
+                        <div class="form-block-body">
+
+                            <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input class="form-control" id="title" type="text" name="title" value="<?php echo $row['title']; ?>"/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <?php
+                    if(is_array($row['elements'])){
+
+                        $number     = 1;
+                        $elements   = json_decode($row['elements']);
+
+                        foreach($elements as $element){
+                            switch($element->type){
+                                case 'text':
+                                    ?>
+                                    <div class="form-block" id="<?php echo $number; ?>">
+                                        <div class="form-block-top">
+                                            <span>New form block</span>
+                                            <span class="pull-right"><a href="#" onclick="destroyElement(<?php echo $number; ?>)">X</a></span>
+                                        </div>
+                                        <div class="form-block-body">
+                                            <input type="hidden" name="elements[<?php echo $number; ?>][type]" value="<?php echo $element->type; ?>">
+                                            <div class="form-group">
+                                                <label for="title">Title</label>
+                                                <input class="form-control" type="text" name="elements[<?php echo $number; ?>][title]" value="<?php echo $element->title; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="content">Content</label>
+                                                <textarea class="form-control" name="elements[<?php echo $number; ?>][content]" cols="30" rows="10"><?php echo $element->content; ?></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    break;
+                                case 'textimage':
+                                    break;
+                            }
+
+                            $number ++;
+                        }
+                    }
+                    ?>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="content">Content</label>
-                    <textarea class="form-control" name="content" cols="30" rows="10"><?php echo $row['content'] ?></textarea>
+                <div class="form-side col-md-4">
+                    <div class="form-side-block">
+
+                        <div class="form-side-block-top">
+                            <span>Details</span>
+                        </div>
+
+                        <div class="form-side-block-body">
+                            <span><strong>Date created: </strong><?php echo $row['time_created']; ?></span><br/>
+                            <span><strong>Date updated: </strong><?php echo $row['time_updated']; ?></span><br/>
+                            <span><strong>Author: </strong><?php echo $row['author']; ?></span><br/><br/>
+                            <input class="btn btn-green" type="submit" name="edit" value="Edit"/>
+                        </div>
+
+                    </div>
                 </div>
 
-                <input class="btn btn-primary" type="submit" name="edit" value="Edit"/>
             </form>
 
         </div>

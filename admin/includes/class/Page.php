@@ -23,12 +23,12 @@ class Page {
     |   This function creates a new page in the database.
     |------------------------------------------------------------
     */
-    public function create($title, $content, $author){
+    public function create($title, $elements, $author, $date){
         try {
-            $sql = "INSERT INTO pages SET title = :title, content = :content, author = :author";
+            $sql = "INSERT INTO pages SET title = :title, elements = :elements, author = :author, time_created = :time_created, time_updated = :time_created";
             $q = $this->db->prepare($sql);
 
-            $q->execute(array(':title' => $title, ':content' => $content, ':author' => $author));
+            $q->execute(array(':title' => $title, ':elements' => $elements, ':author' => $author, ':time_created' => $date));
 
             return $q;
         }
@@ -47,12 +47,12 @@ class Page {
     |   it according to the specified '$id'.
     |------------------------------------------------------------
     */
-    public function edit($title, $content, $id){
+    public function edit($title, $elements, $id, $date){
         try {
-            $sql = "UPDATE pages SET title = :title, content = :content, id = :id";
+            $sql = "UPDATE pages SET title = :title, elements = :elements, time_updated = :time_updated WHERE id = :id";
             $q = $this->db->prepare($sql);
 
-            $q->execute(array(':title' => $title, ':content' => $content, ':id' => $id));
+            $q->execute(array(':title' => $title, ':elements' => $elements, ':id' => $id , ':time_updated' => $date));
 
             return $q;
         }

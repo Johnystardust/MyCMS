@@ -5,7 +5,6 @@
 
 include_once('../config.php');
 
-
 /*
 |----------------------------------------------------------------
 |   If the user is not logged in than redirect to the home page.
@@ -86,9 +85,14 @@ include_once('admin-header.php');
         include_once('admin-menu.php');
         ?>
 
-        <div class="col-md-10 main">
+        <div class="col-md-10 col-md-offset-2 main">
 
             <?php
+            /*
+            |----------------------------------------------------------------
+            |   If there are messages, display them.
+            |----------------------------------------------------------------
+            */
             if($message !== ''){
                 ?>
                 <div class="admin-message">
@@ -100,34 +104,49 @@ include_once('admin-header.php');
 
             <h2>Pages</h2>
 
-            <a class="btn btn-primary" href="<?php echo DIRADMIN ?>new-page.php">Add new</a>
+            <a class="btn btn-green" href="<?php echo DIRADMIN ?>new-page.php">Add new</a>
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $q = $page->list_all();
-                    $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+            <div class="list-table">
 
-                    foreach($rows as $row){
-                        echo '<tr>';
-                        echo '<td>'.$row["title"].'</td>';
-                        echo '<td>'.$row["author"].'</td>';
-                        echo '<td>'.$row["date"].'</td>';
-                        echo '<td><a class="btn btn-primary" href="'.DIRADMIN.'edit-page.php?id='.$row["id"].'">Edit</a>&nbsp
-                        <a class="btn btn-primary" href="'.DIRADMIN.'pages.php?delete=true&id='.$row["id"].'">Delete</a></td>';
-                        echo '</tr>';
-                    }
-                    ?>
-                </tbody>
-            </table>
+                <div class="list-table-top">
+                    <span>Pages</span>
+                </div>
+
+                <div class="list-table-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Date Created</th>
+                            <th>Date Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $q = $page->list_all();
+                        $rows = $q->fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach($rows as $row){
+                            echo '<tr>';
+                            echo '<td><input type="checkbox"/></td>';
+                            echo '<td>'.$row["title"].'</td>';
+                            echo '<td>'.$row["author"].'</td>';
+                            echo '<td>'.$row["time_created"].'</td>';
+                            echo '<td>'.$row["time_updated"].'</td>';
+                            echo '<td><a class="btn btn-green" href="'.DIRADMIN.'edit-page.php?id='.$row["id"].'">Edit</a>&nbsp
+                            <a class="btn btn-green" href="'.DIRADMIN.'pages.php?delete=true&id='.$row["id"].'">Delete</a>&nbsp
+                            <a class="btn btn-green" target="blank" href="'.DIR.'page.php?p='.$row["id"].'">View</a></td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
 
         </div>
 

@@ -4,6 +4,16 @@
 .no-margin {
   margin: 0; }
 
+.btn-green {
+  color: #FFFFFF;
+  background: #74CA97;
+  border-color: #56AD7A; }
+
+.btn-green:hover {
+  color: #FFFFFF;
+  background: #56AD7A;
+  border-color: #56AD7A; }
+
 h2 {
   font-family: "Roboto", sans-serif;
   font-weight: 100; }
@@ -32,10 +42,48 @@ h2 {
 
 .top-bar {
   height: 40px;
-  background: lightgrey; }
+  width: 100%;
+  background: #27333E;
+  position: fixed; }
 
 .menu {
-  background: lightgrey;
-  height: 600px; }
+  background: #27333E;
+  min-height: 600px;
+  position: fixed;
+  margin-top: 40px; }
+
+.main {
+  background: #F5F5F6;
+  min-height: 600px;
+  margin-top: 40px; }
+
+.top, .list-table-top, .form-block-top, .form-side-block-top {
+  padding: 15px;
+  background: #74CA97;
+  border-radius: 15px 15px 0 0;
+  color: #FFFFFF; }
+
+.body, .list-table-body, .form-block-body, .form-side-block-body {
+  padding: 15px;
+  background: #FFFFFF;
+  border-radius: 0 0 15px 15px; }
+
+.list-table {
+  margin-top: 25px; }
+
+.form-body {
+  padding-left: 0 !important; }
+
+.form-side {
+  padding-right: 0 !important; }
+
+.form-block {
+  margin-top: 25px; }
+
+.form-block:last-of-type {
+  margin-bottom: 25px; }
+
+.form-side-block {
+  margin-top: 25px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -49,7 +49,8 @@ if(isset($_POST['edit'])){
     /*
     |------------------------------------------------------------
     |   If the user has send their details correctly, check if
-    |   the users 'username' and 'email' are unique.
+    |   the users 'username' and 'email' are unique, except
+    |   the current user's 'username' and 'email'.
     |   If they are than complete the registration process.
     |------------------------------------------------------------
     */

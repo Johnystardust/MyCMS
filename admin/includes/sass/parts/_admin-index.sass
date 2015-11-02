@@ -1,7 +1,64 @@
 .top-bar
   height: 40px
-  background: lightgrey
+  width: 100%
+  background: $blue
+  position: fixed
 
 .menu
-  background: lightgrey
-  height: 600px
+  background: $blue
+  min-height: 600px
+  position: fixed
+  margin-top: 40px
+
+.main
+  background: $light-grey
+  min-height: 600px
+  margin-top: 40px
+
+.top
+  padding: 15px
+  background: $light-green
+  border-radius: 15px 15px 0 0
+  color: $white
+.body
+  padding: 15px
+  background: $white
+  border-radius: 0 0 15px 15px
+
+// List pages/users/etc
+.list-table
+  margin-top: 25px
+
+.list-table-top
+  @extend .top
+
+.list-table-body
+  @extend .body
+
+// Form blocks
+.form-body
+  padding-left: 0 !important
+
+.form-side
+  padding-right: 0 !important
+
+.form-block
+  margin-top: 25px
+.form-block:last-of-type
+  margin-bottom: 25px
+
+.form-block-top
+  @extend .top
+
+.form-block-body
+  @extend .body
+
+.form-side-block
+  margin-top: 25px
+
+.form-side-block-top
+  @extend .top
+
+.form-side-block-body
+  @extend .body
+
