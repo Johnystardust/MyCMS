@@ -10,6 +10,12 @@ if(!defined('included')){
 ?>
 
 <div class="col-md-2 menu">
-    <a href="<?php echo DIRADMIN ?>pages.php">Pages</a><br/>
-    <a href="<?php echo DIRADMIN ?>users.php">Users</a>
+
+    <ul>
+        <a href="<?php echo DIRADMIN ?>pages.php"><li><span>Pages</span></li></a>
+        <a href="<?php echo DIRADMIN ?>users.php"><li><span>Users</span></li></a>
+    </ul>
+
+
+
 </div>
