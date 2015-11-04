@@ -110,6 +110,12 @@ include_once('admin-header.php');
                     </div>
                     
                     <?php
+                    /*
+                    |----------------------------------------------------------------
+                    |   If there are elements in $row['elements'] decode them and
+                    |   display each of them in their appropriate type.
+                    |----------------------------------------------------------------
+                    */
                     if(!empty($row['elements'])){
 
                         $number     = 1;
@@ -118,27 +124,10 @@ include_once('admin-header.php');
                         foreach($elements as $element){
                             switch($element->type){
                                 case 'text':
-                                    ?>
-                                    <div class="form-block" id="<?php echo $number; ?>">
-                                        <div class="form-block-top">
-                                            <span>New form block</span>
-                                            <span class="pull-right"><a href="#" onclick="destroyElement(<?php echo $number; ?>)">X</a></span>
-                                        </div>
-                                        <div class="form-block-body">
-                                            <input type="hidden" name="elements[<?php echo $number; ?>][type]" value="<?php echo $element->type; ?>">
-                                            <div class="form-group">
-                                                <label for="title">Title</label>
-                                                <input class="form-control" type="text" name="elements[<?php echo $number; ?>][title]" value="<?php echo $element->title; ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="content">Content</label>
-                                                <textarea class="form-control" name="elements[<?php echo $number; ?>][content]" cols="30" rows="10"><?php echo $element->content; ?></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php
+                                    include_once('includes/elements/text-title.php');
                                     break;
-                                case 'textimage':
+                                case 'image':
+                                    include_once('includes/elements/image.php');
                                     break;
                             }
 

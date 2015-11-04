@@ -38,7 +38,16 @@ if(isset($_POST['submit'])){
 |----------------------------------------------------------------
 */
 include_once('admin-header.php');
+
+/*
+|----------------------------------------------------------------
+|   The admin overlay
+|----------------------------------------------------------------
+*/
 ?>
+<div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000; display: none">
+    <iframe src="media-select.php" width="600" height="600" style="margin: 0 auto; display: block; width: 95%; height: 95%; margin-top: 1%; border: none;"></iframe>
+</div>
 
 
 <div class="container-fluid">
@@ -91,30 +100,6 @@ include_once('admin-header.php');
                                 <input class="form-control" id="title" type="text" name="title"/>
                             </div>
                         </div>
-                    </div>
-
-
-
-                    <!-- TESTTING PURPOSES -->
-                    <div class="form-block">
-
-                        <div class="form-block-top">
-                            <span>image</span>
-                        </div>
-
-                        <div class="form-block-body">
-
-                            <input type="hidden" name="elements[][type]" value="image"/>
-
-                            <div class="form-group">
-                                <label for="image">Image</label>
-                                <input type="hidden" name="elements[][image]" value=""/>
-
-                                <a class="btn btn-green" href="#" onclick="chooseImage()">Select Image</a>
-                            </div>
-
-                        </div>
-
                     </div>
 
                 </div>

@@ -45,7 +45,7 @@ include_once('admin-header.php');
         include_once('admin-menu.php');
         ?>
 
-        <div class="col-md-10 main">
+        <div class="col-md-10 col-md-offset-2 main">
 
             <?php
 
