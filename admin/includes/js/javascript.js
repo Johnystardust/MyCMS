@@ -72,6 +72,24 @@ function addElement($value){
                             <label><input type='radio' name='elements["+$number+"][image][position]' value='right'/>Align right</label>\
                         </label>\
                     </div>\
+                    \
+                    <hr/>\
+                    <label>Size</label><br/>\
+                    <div class='btn-group' data-toggle='buttons'>\
+                        <label class='btn btn-green active'>\
+                            <label><input type='radio' name='elements["+$number+"][image][size][width]' value='original'/>Original</label>\
+                        </label>\
+                        <label class='btn btn-green'>\
+                            <label><input type='radio' name='elements["+$number+"][image][size][width]' value='100%'/>100% Width</label>\
+                        </label>\
+                    </div>\
+                    \
+                    <hr/>\
+                    <label>Set max width</label>\
+                    <input class='form-control form-contol-half' type='number' name='elements["+$number+"][image][size][maxwidth]'/>\
+                    <br/>\
+                    <label>Set max height</label>\
+                    <input class='form-control form-contol-half' type='number' name='elements["+$number+"][image][size][maxheight]'/>\
                 </div>\
             </div>\
         </div>\

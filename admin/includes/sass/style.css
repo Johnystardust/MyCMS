@@ -22,6 +22,9 @@
 .btn-close {
   margin-top: -6px; }
 
+.form-contol-half {
+  width: 50%; }
+
 .menu {
   background: #27333E;
   min-height: 600px;

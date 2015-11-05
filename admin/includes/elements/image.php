@@ -19,17 +19,17 @@
             <br/><br/>
             <?php
             if($element->image->src !== ''){
-                echo '<a onclick="removeImage('.$number.')" class="remove-image-btn btn btn-green" href="#">Remove Image</a>';
-                echo '<a style="display: none;" onclick="openOverlay('.$number.')" class="select-image-btn btn btn-green" href="#">Select Image</a>';
+                echo '<a onclick="removeImage('.$number.')" class="remove-image-btn-'.$number.' btn btn-green" href="#">Remove Image</a>';
+                echo '<a style="display: none;" onclick="openOverlay('.$number.')" class="select-image-btn-'.$number.' btn btn-green" href="#">Select Image</a>';
             }
             else {
-                echo '<a style="display: none;" onclick="removeImage('.$number.')" class="remove-image-btn btn btn-green" href="#">Remove Image</a>';
-                echo '<a onclick="openOverlay('.$number.')" class="select-image-btn btn btn-green" href="#">Select Image</a>';
+                echo '<a style="display: none;" onclick="removeImage('.$number.')" class="remove-image-btn-'.$number.' btn btn-green" href="#">Remove Image</a>';
+                echo '<a onclick="openOverlay('.$number.')" class="select-image-btn-'.$number.' btn btn-green" href="#">Select Image</a>';
             }
             ?>
         </div>
 
-        <div class="form-group image-options">
+        <div class="form-group image-options-<?php echo $number; ?>">
             <hr/>
 
             <label>Position</label><br/>
@@ -44,23 +44,29 @@
                     <label><input type="radio" name="elements[<?php echo $number; ?>][image][position]" value="right" <?php if($element->image->position == 'right'){ echo 'checked'; } ?>/>Align right</label>
                 </label>
             </div>
+
+            <hr/>
+
+            <label>Size</label><br/>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-green <?php if($element->image->size->width == 'original'){ echo 'active'; } ?>">
+                    <label><input type="radio" name="elements[<?php echo $number; ?>][image][size][width]" value="original" <?php if($element->image->size->width == 'original'){ echo 'checked'; } ?>/>Original</label>
+                </label>
+                <label class="btn btn-green <?php if($element->image->size->width == '100%'){ echo 'active'; } ?>">
+                    <label><input type="radio" name="elements[<?php echo $number; ?>][image][size][width]" value="100%" <?php if($element->image->size->width == '100%'){ echo 'checked'; } ?>/>100% Width</label>
+                </label>
+            </div>
+
+            <hr/>
+
+            <label>Set max width</label>
+            <input class="form-control form-contol-half" type="number" name="elements[<?php echo $number; ?>][image][size][maxwidth]" value="<?php echo $element->image->size->maxwidth; ?>"/>
+
+            <br/>
+
+            <label>Set max height</label>
+            <input class="form-control form-contol-half" type="number" name="elements[<?php echo $number; ?>][image][size][maxheight]" value="<?php echo $element->image->size->maxheight; ?>"/>
         </div>
-
-
-        <div class="checkbox">
-            <label><input type="checkbox" name="elements[<?php echo $number; ?>][image][width][full]" value="100%" <?php if($element->image->width->full == '100%'){ echo 'checked'; } ?>>Set width to 100%.</label>
-        </div>
-
-<!---->
-<!--        <div class="form-group">-->
-<!--            <label for="">Max width</label>-->
-<!--            <input class="form-control" type="number" name="elements[--><?php //echo $number; ?><!--][image][width][maxwidth]"/>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="form-group">-->
-<!--            <label for="">Max height</label>-->
-<!--            <input class="form-control" type="number" name="elements[--><?php //echo $number; ?><!--][image][height]"/>-->
-<!--        </div>-->
 
     </div>
 </div>

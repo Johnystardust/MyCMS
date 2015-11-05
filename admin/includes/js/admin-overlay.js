@@ -56,15 +56,18 @@ function chooseImage($value, $number){
 // Function to remove the image from the image-value input field and the preview image
 function removeImage($number){
     // remove the image-value value attr
-    $('#image-value-'+ $number).attr('value', '');
+    $('#image-value-'+$number).attr('value', '');
 
     // remove the preview-image
-    $('.preview-image-'+ $number).attr('src', '');
-    $('.preview-image-'+ $number).hide();
+    $('.preview-image-'+$number).attr('src', '');
+    $('.preview-image-'+$number).hide();
+
+    // Hide the image options
+    $('.image-options-'+$number).hide();
 
     // Hide the delete button
-    $('.remove-image-btn').hide();
+    $('.remove-image-btn-'+$number).hide();
 
     // Show the select button
-    $('.select-image-btn').show();
+    $('.select-image-btn-'+$number).show();
 }
