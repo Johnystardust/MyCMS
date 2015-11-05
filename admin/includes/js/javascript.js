@@ -7,7 +7,7 @@ var $type;
 function addElement($value){
 
     // Get the number of previous form-block's
-    alert($('.form-body').find('.form-block').length);
+    //alert($('.form-body').find('.form-block').length);
 
 
 
@@ -46,20 +46,41 @@ function addElement($value){
                 <span>Image - Block "+$number+"</span>\
                 <span class='pull-right'><a class='btn btn-green btn-close' onclick='destroyElement("+$number+")' href='#'>X</a></span>\
             </div>\
+            \
             <div class='form-block-body'>\
                 <input type='hidden' name='elements["+$number+"][type]' value='"+$type+"'/>\
                 <div class='form-group'>\
                     <label for='image'>Image</label><br/>\
-                    <input id='image-value' type='hidden' name='elements["+$number+"][image]' value=''/>\
-                    <img class='preview-image' src='' width='200' height='auto'/>\
-                    <br/>\
+                    <input id='image-value' type='hidden' name='elements["+$number+"][image][src]' value=''/>\
+                    <img style='display: none;' class='preview-image' src='' width='200' height='auto'/>\
+                    <br/><br/>\
                     <a onclick='openOverlay()' class='select-image-btn btn btn-green' href='#'>Select Image</a>\
-                    <a onclick='removeImage()' class='remove-image-btn btn btn-green' href='#'>Remove Image</a>\
+                    <a style='display: none;' onclick='removeImage()' class='remove-image-btn btn btn-green' href='#'>Remove Image</a>\
+                </div>\
+                \
+                <div class='form-group image-options' style='display: none;'>\
+                    <hr/>\
+                    <label>Position</label><br/>\
+                    <div class='btn-group' data-toggle='buttons'>\
+                        <label class='btn btn-green active'>\
+                            <label><input checked type='radio' name='elements["+$number+"][image][position]' value='left'/>Align left</label>\
+                        </label>\
+                        <label class='btn btn-green'>\
+                            <label><input type='radio' name='elements["+$number+"][image][position]' value='center'/>Center the image</label>\
+                        </label>\
+                        <label class='btn btn-green'>\
+                            <label><input type='radio' name='elements["+$number+"][image][position]' value='right'/>Align right</label>\
+                        </label>\
+                    </div>\
                 </div>\
             </div>\
         </div>\
         ")
     }
+
+//<div class='checkbox'>\
+//<label><input  type='checkbox' name='elements["+$number+"][image][width][full]' value='100%'>Set width to 100%.</label>\
+//</div>\
 
     $('.main').find('select').val('default');
 

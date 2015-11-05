@@ -36,6 +36,9 @@ function chooseImage($value){
     // Show the Delete button
     $('.remove-image-btn').show();
 
+    // Show the image options
+    $('.image-options').show();
+
     // Close the overlay
     closeOverlay();
 

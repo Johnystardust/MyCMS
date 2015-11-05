@@ -11,18 +11,69 @@
 
         <div class="form-group">
             <label for="image">Image</label><br/>
-            <input id="image-value" type="hidden" name="elements[<?php echo $number; ?>][image]" value="<?php echo $element->image ?>"/>
+            <input id="image-value" type="hidden" name="elements[<?php echo $number; ?>][image][src]" value="<?php echo $element->image->src; ?>"/>
 
-            <img class="preview-image" src="<?php echo $element->image ?>" width="200" height="auto"/>
+            <img class="preview-image" src="<?php echo $element->image->src; ?>" width="200" height="auto"/>
 
             <br/><br/>
-
-            <span>Image name: </span>
-            <span>Image size: </span>
-
-            <a onclick="removeImage()" class="remove-image-btn btn btn-green" href="#">Remove Image</a>
-            <a onclick="openOverlay()" class="select-image-btn btn btn-green" href="#">Select Image</a>
+            <?php
+            if($element->image->src !== ''){
+                echo '<a onclick="removeImage()" class="remove-image-btn btn btn-green" href="#">Remove Image</a>';
+                echo '<a style="display: none;" onclick="openOverlay()" class="select-image-btn btn btn-green" href="#">Select Image</a>';
+            }
+            else {
+                echo '<a style="display: none;" onclick="removeImage()" class="remove-image-btn btn btn-green" href="#">Remove Image</a>';
+                echo '<a onclick="openOverlay()" class="select-image-btn btn btn-green" href="#">Select Image</a>';
+            }
+            ?>
         </div>
+
+        <div class="form-group image-options">
+            <hr/>
+
+            <label>Position</label><br/>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-green <?php if($element->image->position == 'left'){ echo 'active'; } ?>">
+                    <label><input type="radio" name="elements[<?php echo $number; ?>][image][position]" value="left" <?php if($element->image->position == 'left'){ echo 'checked'; } ?>/>Align left</label>
+                </label>
+                <label class="btn btn-green <?php if($element->image->position == 'center'){ echo 'active'; } ?>">
+                    <label><input type="radio" name="elements[<?php echo $number; ?>][image][position]" value="center" <?php if($element->image->position == 'center'){ echo 'checked'; } ?>/>Center the image</label>
+                </label>
+                <label class="btn btn-green <?php if($element->image->position == 'right'){ echo 'active'; } ?>">
+                    <label><input type="radio" name="elements[<?php echo $number; ?>][image][position]" value="right" <?php if($element->image->position == 'right'){ echo 'checked'; } ?>/>Align right</label>
+                </label>
+            </div>
+        </div>
+
+
+
+
+        <div class="checkbox">
+            <label><input type="checkbox" name="elements[<?php echo $number; ?>][image][width][full]" value="100%" <?php if($element->image->width->full == '100%'){ echo 'checked'; } ?>>Set width to 100%.</label>
+        </div>
+
+<!--        <div class="checkbox">-->
+<!--            <label><input type="radio" name="elements[--><?php //echo $number; ?><!--][image][position]" value="center" --><?php //if($element->image->position == 'center'){ echo 'checked'; } ?><!--/>Center the image?</label>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="checkbox">-->
+<!--            <label><input type="radio" name="elements[--><?php //echo $number; ?><!--][image][position]" value="left" --><?php //if($element->image->position == 'left'){ echo 'checked'; } ?><!--/>Align left</label>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="checkbox">-->
+<!--            <label><input type="radio" name="elements[--><?php //echo $number; ?><!--][image][position]" value="right" --><?php //if($element->image->position == 'right'){ echo 'checked'; } ?><!--/>Align right</label>-->
+<!--        </div>-->
+
+<!---->
+<!--        <div class="form-group">-->
+<!--            <label for="">Max width</label>-->
+<!--            <input class="form-control" type="number" name="elements[--><?php //echo $number; ?><!--][image][width][maxwidth]"/>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="form-group">-->
+<!--            <label for="">Max height</label>-->
+<!--            <input class="form-control" type="number" name="elements[--><?php //echo $number; ?><!--][image][height]"/>-->
+<!--        </div>-->
 
     </div>
 </div>

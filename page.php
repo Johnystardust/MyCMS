@@ -19,25 +19,55 @@ $q = $page->list_single($id);
 
 $row = $q->fetch(PDO::FETCH_ASSOC);
 
-
-
-
-echo $row['title'].'<br/>';
-echo $row['time_created'].'<br/><br/>';
-
 $elements = json_decode($row['elements']);
 
-
 foreach($elements as $element){
-
+    /*
+    |----------------------------------------------------------------
+    |   Switch between the types of elements
+    |----------------------------------------------------------------
+    */
     switch($element->type){
+        /*
+        |----------------------------------------------------------------
+        |   Text Element
+        |----------------------------------------------------------------
+        */
         case 'text':
             echo '<span>'.$element->title.'</span><br/>';
             echo '<span>'.$element->content.'</span><br/>';
             break;
+        /*
+        |----------------------------------------------------------------
+        |   Image Element
+        |----------------------------------------------------------------
+        */
         case 'image':
-            echo '<span>'.$element->image.'</span><br/>';
-            echo '<img src="'.$element->image.'">';
+            /*
+            |----------------------------------------------------------------
+            |   Determine the desired position of the image
+            |----------------------------------------------------------------
+            */
+            if($element->image->position == 'center'){
+                $style = 'style="margin: 0 auto; display: block;"';
+            }
+            elseif($element->image->position == 'left'){
+                $style = 'style="float: left; display: block;"';
+            }
+            elseif($element->image->position == 'right'){
+                $style = 'style="float: right; display: block;"';
+            }
+
+//            elseif($element->image->width->full == 'true'){
+//                $style = 'style="width: 100%"';
+//            }
+
+            ?>
+
+
+            <img <?php echo $style; ?> src="<?php echo $element->image->src; ?>" />
+
+            <?php
             break;
     }
 
