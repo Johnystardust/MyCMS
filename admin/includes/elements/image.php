@@ -8,22 +8,23 @@
     <div class="form-block-body">
 
         <input type="hidden" name="elements[<?php echo $number; ?>][type]" value="<?php echo $element->type; ?>"/>
+        <input id="number" type="hidden" value="<?php echo $number; ?>"/>
 
         <div class="form-group">
             <label for="image">Image</label><br/>
-            <input id="image-value" type="hidden" name="elements[<?php echo $number; ?>][image][src]" value="<?php echo $element->image->src; ?>"/>
+            <input id="image-value-<?php echo $number; ?>" type="hidden" name="elements[<?php echo $number; ?>][image][src]" value="<?php echo $element->image->src; ?>"/>
 
-            <img class="preview-image" src="<?php echo $element->image->src; ?>" width="200" height="auto"/>
+            <img class="preview-image-<?php echo $number; ?>" src="<?php echo $element->image->src; ?>" width="200" height="auto"/>
 
             <br/><br/>
             <?php
             if($element->image->src !== ''){
-                echo '<a onclick="removeImage()" class="remove-image-btn btn btn-green" href="#">Remove Image</a>';
-                echo '<a style="display: none;" onclick="openOverlay()" class="select-image-btn btn btn-green" href="#">Select Image</a>';
+                echo '<a onclick="removeImage('.$number.')" class="remove-image-btn btn btn-green" href="#">Remove Image</a>';
+                echo '<a style="display: none;" onclick="openOverlay('.$number.')" class="select-image-btn btn btn-green" href="#">Select Image</a>';
             }
             else {
-                echo '<a style="display: none;" onclick="removeImage()" class="remove-image-btn btn btn-green" href="#">Remove Image</a>';
-                echo '<a onclick="openOverlay()" class="select-image-btn btn btn-green" href="#">Select Image</a>';
+                echo '<a style="display: none;" onclick="removeImage('.$number.')" class="remove-image-btn btn btn-green" href="#">Remove Image</a>';
+                echo '<a onclick="openOverlay('.$number.')" class="select-image-btn btn btn-green" href="#">Select Image</a>';
             }
             ?>
         </div>
@@ -46,23 +47,9 @@
         </div>
 
 
-
-
         <div class="checkbox">
             <label><input type="checkbox" name="elements[<?php echo $number; ?>][image][width][full]" value="100%" <?php if($element->image->width->full == '100%'){ echo 'checked'; } ?>>Set width to 100%.</label>
         </div>
-
-<!--        <div class="checkbox">-->
-<!--            <label><input type="radio" name="elements[--><?php //echo $number; ?><!--][image][position]" value="center" --><?php //if($element->image->position == 'center'){ echo 'checked'; } ?><!--/>Center the image?</label>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="checkbox">-->
-<!--            <label><input type="radio" name="elements[--><?php //echo $number; ?><!--][image][position]" value="left" --><?php //if($element->image->position == 'left'){ echo 'checked'; } ?><!--/>Align left</label>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="checkbox">-->
-<!--            <label><input type="radio" name="elements[--><?php //echo $number; ?><!--][image][position]" value="right" --><?php //if($element->image->position == 'right'){ echo 'checked'; } ?><!--/>Align right</label>-->
-<!--        </div>-->
 
 <!---->
 <!--        <div class="form-group">-->

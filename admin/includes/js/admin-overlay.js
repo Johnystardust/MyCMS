@@ -4,7 +4,14 @@ $(document).ready(function(){
 });
 
 // Function to open the admin overlay
-function openOverlay(){
+function openOverlay($number){
+    // Set a global variable
+    alert($number);
+    window.globalVariable = $number;
+
+    // Set the src for the iframe
+    $('#iframe').attr('src', 'media-select.php');
+
     // show the overlay
     $('.overlay').show();
 
@@ -22,22 +29,22 @@ function closeOverlay(){
 }
 
 // Function to choose the desired image from the images
-function chooseImage($value){
+function chooseImage($value, $number){
     // Send the chosen image value
-    $('#image-value').attr('value', $value);
+    $('#image-value-'+$number).attr('value', $value);
 
     // Set the preview Image to the image value
-    $('.preview-image').show();
-    $('.preview-image').attr('src', $value);
+    $('.preview-image-'+$number).show();
+    $('.preview-image-'+$number).attr('src', $value);
 
     // Hide the select image button
-    $('.select-image-btn').hide();
+    $('.select-image-btn-'+$number).hide();
 
     // Show the Delete button
-    $('.remove-image-btn').show();
+    $('.remove-image-btn-'+$number).show();
 
     // Show the image options
-    $('.image-options').show();
+    $('.image-options-'+$number).show();
 
     // Close the overlay
     closeOverlay();
@@ -47,13 +54,13 @@ function chooseImage($value){
 }
 
 // Function to remove the image from the image-value input field and the preview image
-function removeImage(){
+function removeImage($number){
     // remove the image-value value attr
-    $('#image-value').attr('value', '');
+    $('#image-value-'+ $number).attr('value', '');
 
     // remove the preview-image
-    $('.preview-image').attr('src', '');
-    $('.preview-image').hide();
+    $('.preview-image-'+ $number).attr('src', '');
+    $('.preview-image-'+ $number).hide();
 
     // Hide the delete button
     $('.remove-image-btn').hide();

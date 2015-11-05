@@ -33,7 +33,7 @@ $images = glob($upload_dir . $image_types, GLOB_BRACE);
 <div class="list-table" style="margin-top: 0px;">
     <div class="list-table-top">
         <span>Media</span>
-        <span class='pull-right'><a onclick='window.parent.closeOverlay();' href='#'>X</a></span>
+        <span class='pull-right'><a class="btn btn-green btn-close" onclick='window.parent.closeOverlay();' href='#'>X</a></span>
     </div>
     <div class="list-table-body">
         <table class="table table-hover">
@@ -55,7 +55,7 @@ $images = glob($upload_dir . $image_types, GLOB_BRACE);
                     <td><?php echo filesize($image); ?></td>
                     <td><?php echo pathinfo($image, PATHINFO_EXTENSION); ?></td>
                     <td><img src="<?php echo $upload_dir.basename($image); ?>" width="100px" height="auto"/></td>
-                    <td><a class="btn btn-green" onclick="window.parent.chooseImage('<?php echo DIR.'uploads/'.basename($image); ?>')" href="#">Select</a></td>
+                    <td><a class="btn btn-green" onclick="window.parent.chooseImage('<?php echo DIR.'uploads/'.basename($image); ?>', window.parent.globalVariable)" href="#">Select</a></td>
                 </tr>
             <?php
             }

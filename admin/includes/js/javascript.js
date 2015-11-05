@@ -51,14 +51,14 @@ function addElement($value){
                 <input type='hidden' name='elements["+$number+"][type]' value='"+$type+"'/>\
                 <div class='form-group'>\
                     <label for='image'>Image</label><br/>\
-                    <input id='image-value' type='hidden' name='elements["+$number+"][image][src]' value=''/>\
-                    <img style='display: none;' class='preview-image' src='' width='200' height='auto'/>\
+                    <input id='image-value-"+$number+"' type='hidden' name='elements["+$number+"][image][src]' value=''/>\
+                    <img style='display: none;' class='preview-image-"+$number+"' src='' width='200' height='auto'/>\
                     <br/><br/>\
-                    <a onclick='openOverlay()' class='select-image-btn btn btn-green' href='#'>Select Image</a>\
-                    <a style='display: none;' onclick='removeImage()' class='remove-image-btn btn btn-green' href='#'>Remove Image</a>\
+                    <a onclick='openOverlay("+$number+")' class='select-image-btn-"+$number+" btn btn-green' href='#'>Select Image</a>\
+                    <a style='display: none;' onclick='removeImage("+$number+")' class='remove-image-btn-"+$number+" btn btn-green' href='#'>Remove Image</a>\
                 </div>\
                 \
-                <div class='form-group image-options' style='display: none;'>\
+                <div class='form-group image-options-"+$number+"' style='display: none;'>\
                     <hr/>\
                     <label>Position</label><br/>\
                     <div class='btn-group' data-toggle='buttons'>\

@@ -46,7 +46,7 @@ include_once('admin-header.php');
 */
 ?>
 <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000; display: none">
-    <iframe src="media-select.php" width="600" height="600" style="margin: 0 auto; display: block; width: 95%; height: 95%; margin-top: 1%; border: none;"></iframe>
+    <iframe id="iframe" src="" width="600" height="600" style="margin: 0 auto; display: block; width: 95%; height: 95%; margin-top: 1%; border: none;"></iframe>
 </div>
 
 
