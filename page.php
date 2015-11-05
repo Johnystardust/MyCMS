@@ -35,10 +35,11 @@ foreach($elements as $element){
             echo '<span>'.$element->title.'</span><br/>';
             echo '<span>'.$element->content.'</span><br/>';
             break;
+        case 'image':
+            echo '<span>'.$element->image.'</span><br/>';
+            echo '<img src="'.$element->image.'">';
+            break;
     }
 
 
 }
-
-var_dump($elements);
-

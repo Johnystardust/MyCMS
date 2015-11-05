@@ -14,6 +14,9 @@
   background: #56AD7A;
   border-color: #56AD7A; }
 
+.btn-close {
+  margin-top: -6px; }
+
 .menu {
   background: #27333E;
   min-height: 600px;

@@ -1,12 +1,7 @@
-<?php
-
-
-
-?>
 <div class="form-block" id="<?php echo $number; ?>">
     <div class="form-block-top">
-        <span>New form block</span>
-        <span class="pull-right"><a href="#" onclick="destroyElement(<?php echo $number; ?>)">X</a></span>
+        <span>Text & title - Block <?php echo $number; ?></span>
+        <span class="pull-right"><a class="btn btn-green btn-close" href="#" onclick="destroyElement(<?php echo $number; ?>)">X</a></span>
     </div>
     <div class="form-block-body">
         <input type="hidden" name="elements[<?php echo $number; ?>][type]" value="<?php echo $element->type; ?>">

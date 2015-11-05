@@ -1,73 +1,25 @@
 /**
  * Created by Tim on 10/26/2015.
  */
-
-$(document).ready(function(){
-
-    $('.preview-image').hide();
-    $('.remove-image-btn').hide();
-
-});
-
-function openOverlay(){
-    $('.overlay').show();
-    event.preventDefault();
-}
-
-function closeOverlay(){
-    $('.overlay').hide();
-    event.preventDefault();
-}
-
-
-function chooseImage($value){
-    // Send the chosen image value
-    $('#image-value').attr('value', $value);
-
-    // Set the preview Image to the image value
-    $('.preview-image').show();
-    $('.preview-image').attr('src', $value);
-
-    // Hide the select image button
-    $('.select-image-btn').hide();
-
-    // Show the Delete button
-    $('.remove-image-btn').show();
-
-    // Close the overlay
-    closeOverlay();
-
-    event.preventDefault();
-}
-
-function removeImage(){
-    // remove the image-value value attr
-    $('#image-value').attr('value', '');
-
-    // remove the preview-image
-    $('.preview-image').attr('src', '');
-    $('.preview-image').hide();
-
-    // Hide the delete button
-    $('.remove-image-btn').hide();
-
-    // Show the select button
-    $('.select-image-btn').show();
-}
-
 var $number = 1;
 var $type;
 
 function addElement($value){
 
+    // Get the number of previous form-block's
+    alert($('.form-body').find('.form-block').length);
+
+
+
+    // If the value is text add a new text & title form-block
     if($value == 'text'){
         $type = 'text';
 
         $('.form-body').append("\
         <div class='form-block' id='"+$number+"'>\
             <div class='form-block-top'>\
-                <span>New form block</span>\
-                <span class='pull-right'><a onclick='destroyElement("+$number+")' href='#'>X</a></span>\
+                <span>Text & title - Block "+$number+"</span>\
+                <span class='pull-right'><a class='btn btn-green btn-close' onclick='destroyElement("+$number+")' href='#'>X</a></span>\
             </div>\
             <div class='form-block-body'>\
                 <input type='hidden' name='elements["+$number+"][type]' value='"+$type+"'/>\
@@ -83,14 +35,16 @@ function addElement($value){
         </div>\
         ");
     }
+
+    // If the value is image add a new image form-block
     if($value == 'image'){
         $type = 'image';
         
         $('.form-body').append("\
         <div class='form-block' id='"+$number+"'>\
             <div class='form-block-top'>\
-                <span>image</span>\
-                <span class='pull-right'><a onclick='destroyElement("+$number+")' href='#'>X</a></span>\
+                <span>Image - Block "+$number+"</span>\
+                <span class='pull-right'><a class='btn btn-green btn-close' onclick='destroyElement("+$number+")' href='#'>X</a></span>\
             </div>\
             <div class='form-block-body'>\
                 <input type='hidden' name='elements["+$number+"][type]' value='"+$type+"'/>\

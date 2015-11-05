@@ -22,7 +22,9 @@ if(!defined('included')){
 
     <script src="includes/js/jquery-1.11.3.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
     <script src="includes/js/javascript.js"></script>
+    <script src="includes/js/admin-overlay.js"></script>
 
 </head>
 
